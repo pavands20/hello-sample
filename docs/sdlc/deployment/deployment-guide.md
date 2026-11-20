@@ -7,7 +7,11 @@ Pushes to `main` run `.github/workflows/deploy.yml`, which builds the API image 
 <!-- sdlc:auto:end how-it-deploys -->
 
 <!-- sdlc:auto:start environments -->
-_No environments recorded._
+| Name | Service | Runtime | Scaling | Environment |
+|---|---|---|---|---|
+| Static Site Host | AWS S3 + CloudFront (or equivalent static hosting) | React 19 static build | Managed CDN, no scaling config needed | dev |
+| API Compute | AWS (ECS Fargate or equivalent container runtime) | FastAPI 0.115 on uvicorn | Single task sufficient for smoke test | dev |
+| PostgreSQL Instance | AWS RDS or equivalent managed PostgreSQL | PostgreSQL 16 | Smallest instance class sufficient | dev |
 <!-- sdlc:auto:end environments -->
 
 <!-- sdlc:auto:start live -->
@@ -15,5 +19,12 @@ _Not deployed yet._
 <!-- sdlc:auto:end live -->
 
 <!-- sdlc:auto:start topology -->
-_No deployment topology recorded._
+```mermaid
+graph LR
+  n_Static_Site_Host["Static Site Host<br/>AWS S3 + CloudFront (or equivalent static hosting)"]
+  n_API_Compute["API Compute<br/>AWS (ECS Fargate or equivalent container runtime)"]
+  n_PostgreSQL_Instance["PostgreSQL Instance<br/>AWS RDS or equivalent managed PostgreSQL"]
+  n_Static_Site_Host -->|"HTTPS"| n_API_Compute
+  n_API_Compute -->|"TCP"| n_PostgreSQL_Instance
+```
 <!-- sdlc:auto:end topology -->
