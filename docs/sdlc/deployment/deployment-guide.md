@@ -15,7 +15,15 @@ Pushes to `main` run `.github/workflows/deploy.yml`, which builds the API image 
 <!-- sdlc:auto:end environments -->
 
 <!-- sdlc:auto:start live -->
-_Not deployed yet._
+**Frontend URL:** https://paaca6f73722d.d3j61xaup4zgrx.amplifyapp.com
+
+**Database:** — · —
+
+**Version:** 872f79c4e5a6
+
+**Commit:** `872f79c`
+
+**Finished:** 2026-11-20
 <!-- sdlc:auto:end live -->
 
 <!-- sdlc:auto:start topology -->
